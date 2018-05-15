@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <div class="group">
+    <%= link_to("New movie", new_moviedataa_path, class: "btn btn-primary pull-right") %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>title</td>
+        <td>description</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @moviedataas.each do |moviedataa| %>
+      <tr>
+        <td>#</td>
+        <td><%= link_to(moviedataa.title, moviedataa_path(moviedataa)) %></td>
+        <td><%= moviedataa.description %> </td>
+        <td>
+          <%= link_to("Edit", edit_moviedataa_path(moviedataa), class: "btn btn-sm btn-default") %>
+          <%= link_to("Delete", moviedataa_path(moviedataa), class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?"}) %>
+         </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

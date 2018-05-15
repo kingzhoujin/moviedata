@@ -1,0 +1,2 @@
+class Moviedataa < ApplicationRecord
+end

@@ -27,6 +27,14 @@ class MoviedataasController < ApplicationController
     redirect_to moviedataas_path, notice: "Update Success"
   end
 
+  def destroy
+    @moviedataa = Moviedataa.find(params[:id])
+    @moviedataa.destroy
+    flash[:alert] = "Movie deleted"
+    redirect_to moviedataas_path
+  end
+  
+
   private
 
   def moviedataa_params

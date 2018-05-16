@@ -1,7 +1,7 @@
 <div class="col-md-12">
-  <%= form_for @moviedataa do |f| %>
+  <%= @moviedataas.each do |moviedataa| %>
   <div class="group">
-    <%= link_to("Edit", edit_moviedataa_path(@moviedataa), class: "btn btn-primary pull-right")%>
+    <%= link_to("Edit", edit_moviedataa_path(moviedataa), class: "btn btn-primary pull-right")%>
   </div>
   <h2><%= moviedataa.title %></h2>
   <p><%= moviedataa.description %></p>

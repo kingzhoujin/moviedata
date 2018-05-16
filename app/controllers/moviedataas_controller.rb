@@ -13,6 +13,10 @@ class MoviedataasController < ApplicationController
     redirect_to moviedataas_path
   end
 
+  def show
+    @moviedataa = Moviedataa.find(params[:id])
+  end
+
   def edit
     @moviedataa = Moviedataa.find(params[:id])
   end

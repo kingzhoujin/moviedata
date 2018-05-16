@@ -9,8 +9,11 @@ class MoviedataasController < ApplicationController
 
   def create
     @moviedataa = Moviedataa.new(moviedataa_params)
-    @moviedataa.save
-    redirect_to moviedataas_path
+    if  @moviedataa.save
+      redirect_to moviedataas_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -23,8 +26,11 @@ class MoviedataasController < ApplicationController
 
   def update
     @moviedataa = Moviedataa.find(params[:id])
-    @moviedata.update(moviedataa_params)
-    redirect_to moviedataas_path, notice: "Update Success"
+    if @moviedataa.update(moviedataa_params)
+      redirect_to moviedataas_path, notice: "Update Success"
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -33,7 +39,7 @@ class MoviedataasController < ApplicationController
     flash[:alert] = "Movie deleted"
     redirect_to moviedataas_path
   end
-  
+
 
   private
 

@@ -2,6 +2,13 @@
   <h2>add new movie</h2>
   <hr>
   <%= form_for @moviedataa do |f| %>
+  <% if @moviedataa.errors.any? %>
+  <ul>
+    <% @moviedataa.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
   标题
   <%= f.text_field :title %>
   <br>

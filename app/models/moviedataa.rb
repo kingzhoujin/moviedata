@@ -1,4 +1,4 @@
 class Moviedataa < ApplicationRecord
   validates :title, presence: true
-  belong_to :user
+  belongs_to :user
 end

@@ -11,6 +11,7 @@ before_action :authenticate_user! , only: [:new, :create]
 
   def create
     @moviedataa = Moviedataa.new(moviedataa_params)
+    @moviedataa.user = current_user
     if  @moviedataa.save
       redirect_to moviedataas_path
     else

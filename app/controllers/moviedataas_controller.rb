@@ -1,5 +1,5 @@
 class MoviedataasController < ApplicationController
-before_action :authenticate_user! , only: [:new, :create]
+before_action :authenticate_user! , only: [:new, :create, :edit, :destroy, :update]
 
   def index
     @moviedataas = Moviedataa.all
@@ -25,10 +25,16 @@ before_action :authenticate_user! , only: [:new, :create]
 
   def edit
     @moviedataa = Moviedataa.find(params[:id])
+     if current_user != @moviedataa.user
+       redirect_to root_path, alert:"You have no permission."
+     end
   end
 
   def update
     @moviedataa = Moviedataa.find(params[:id])
+    if current_user != @moviedataa.user
+      redirect_to root_path, alert:"You have no permission."
+    end
     if @moviedataa.update(moviedataa_params)
       redirect_to moviedataas_path, notice: "Update Success"
     else
@@ -38,6 +44,9 @@ before_action :authenticate_user! , only: [:new, :create]
 
   def destroy
     @moviedataa = Moviedataa.find(params[:id])
+    if current_user != @moviedataa.user
+      redirect_to root_path, alert:"You have no permission."
+    end
     @moviedataa.destroy
     flash[:alert] = "Movie deleted"
     redirect_to moviedataas_path

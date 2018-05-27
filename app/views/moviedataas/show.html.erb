@@ -1,8 +1,10 @@
 <div class="col-md-12">
   <% if current_user && current_user == @moviedataa.user %>
   <div class="group">
+    <%= link_to("write a post",new_moviedataa_post_path(@moviedataa), class: "btn btn-default pull-right")%>
     <%= link_to("Edit", edit_moviedataa_path(@moviedataa), class: "btn btn-primary pull-right")%>
   </div>
+
   <% end %>
   <h2><%= @moviedataa.title %></h2>
   <p><%= @moviedataa.description %></p>

@@ -8,4 +8,23 @@
   <% end %>
   <h2><%= @moviedataa.title %></h2>
   <p><%= @moviedataa.description %></p>
-</div>
+  <table>
+    <thead>
+      <tr>
+        <th>文章内容</th>
+        <th>发表者</th>
+        <th>发表时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.content %></td>
+        <td><%= post.user.email%></td>
+        <td><%= post.created_at %></td>
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>

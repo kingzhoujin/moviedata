@@ -8,7 +8,7 @@
   <% end %>
   <h2><%= @moviedataa.title %></h2>
   <p><%= @moviedataa.description %></p>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>文章内容</th>
@@ -22,7 +22,6 @@
         <td><%= post.content %></td>
         <td><%= post.user.email%></td>
         <td><%= post.created_at %></td>
-
       </tr>
       <% end %>
     </tbody>

@@ -22,7 +22,7 @@ before_action :find_moviedataa_and_check_permission, only: [:edit, :update,:dest
 
   def show
     @moviedataa = Moviedataa.find(params[:id])
-    @posts = @moviedataa.posts
+    @posts = @moviedataa.posts.recent
   end
 
   def edit

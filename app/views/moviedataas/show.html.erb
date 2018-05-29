@@ -1,11 +1,17 @@
 <div class="col-md-12">
-  <% if current_user && current_user == @moviedataa.user %>
   <div class="group">
-    <%= link_to("write a post",new_moviedataa_post_path(@moviedataa), class: "btn btn-default pull-right")%>
+  <span class="pull-right">
+    <% if current_user && current_user.is_member_of?(@moviedataa) %>
+    <label class="label label-success"> 群组成员 </label>
+    <% else %>
+    <label class="label label-warning"> 不是群组成员 </label>
+    <% end %>
+  </span>
+  <%= link_to("write a post",new_moviedataa_post_path(@moviedataa), class: "btn btn-default pull-right")%>
+  <% if current_user && current_user == @moviedataa.user %>
     <%= link_to("Edit", edit_moviedataa_path(@moviedataa), class: "btn btn-primary pull-right")%>
-  </div>
-
   <% end %>
+  </div>
   <h2><%= @moviedataa.title %></h2>
   <p><%= @moviedataa.description %></p>
   <table class="table">

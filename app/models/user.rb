@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :moviedataa_relationships
   has_many :participated_moviedataas, :through => :moviedataa_relationships, :source => :moviedataa
+
+  def is_member_of?(moviedataa)
+    participated_moviedataas.include?(moviedataa)
+  end
 end

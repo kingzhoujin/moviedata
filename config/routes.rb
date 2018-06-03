@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :moviedataas do
-    resources :posts 
+    member do
+      post :join
+      post :quit
+    end
+    resources :posts
   end
   root 'moviedataas#index'
 end

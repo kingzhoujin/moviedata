@@ -1,5 +1,5 @@
 class MoviedataasController < ApplicationController
-before_action :authenticate_user! , only: [:new, :create, :edit, :destroy, :update]
+before_action :authenticate_user! , only: [:new, :create, :edit, :destroy, :update, :join, :quit]
 before_action :find_moviedataa_and_check_permission, only: [:edit, :update,:destroy]
 
   def index
@@ -14,6 +14,7 @@ before_action :find_moviedataa_and_check_permission, only: [:edit, :update,:dest
     @moviedataa = Moviedataa.new(moviedataa_params)
     @moviedataa.user = current_user
     if  @moviedataa.save
+      current_user.join!(@moviedataa)
       redirect_to moviedataas_path
     else
       render :new
@@ -40,6 +41,31 @@ before_action :find_moviedataa_and_check_permission, only: [:edit, :update,:dest
     @moviedataa.destroy
     flash[:alert] = "Movie deleted"
     redirect_to moviedataas_path
+  end
+
+  def join
+    @moviedataa = Moviedataa.find(params[:id])
+
+    if !current_user.is_member_of?(@moviedataa)
+      current_user.join!(@moviedataa)
+      flash[:notice] = "加入本讨论版成功！"
+    else
+      flash[:warning] = "你已经是本讨论版成员"
+    end
+
+    redirect_to moviedataa_path(@moviedataa)
+  end
+
+  def quit
+    @moviedataa = Moviedataa.find(params[:id])
+
+    if current_user.is_member_of?(@moviedataa)
+      current_user.quit!(@moviedataa)
+      flash[:alert] = "已退出本讨论版！"
+    else
+      flash[:warning] = "你不是本讨论版成员，怎么退出"
+    end
+    redirect_to moviedataa_path(@moviedataa)
   end
 
 

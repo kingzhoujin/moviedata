@@ -16,7 +16,7 @@
       <tr>
         <td>#</td>
         <td><%= link_to(moviedataa.title, moviedataa_path(moviedataa)) %></td>
-        <td><%= moviedataa.description %> </td>
+        <td><%= simple_format(moviedataa.description) %> </td>
         <td><%= moviedataa.user.email%></td>
         <td>
          <% if current_user && current_user == moviedataa.user %>

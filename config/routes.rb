@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :moviedataas
+    resources :posts
   end
-  
+
   root 'moviedataas#index'
 end
